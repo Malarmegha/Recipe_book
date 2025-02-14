@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Book</title>
+</head>
+<body>
+    <h1>Recipe Book</h1>
+    <a href="{{ url_for('add_recipe') }}">Add Recipe</a>
+    <ul>
+        {% for recipe in recipes %}
+            <li>
+                <strong>{{ recipe.title }}</strong><br>
+                <em>Ingredients:</em> {{ recipe.ingredients }}<br>
+                <em>Instructions:</em> {{ recipe.instructions }}<br>
+                <a href="{{ url_for('delete_recipe', recipe_id=loop.index0) }}">Delete</a>
+            </li>
+        {% else %}
+            <p>No recipes yet.</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>
